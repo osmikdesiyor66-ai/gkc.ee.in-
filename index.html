@@ -1,304 +1,425 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gökçe Elektrik & İnşaat | Ankara Usta Hizmetleri</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f4f6f9;
-            color: #333;
-            line-height: 1.6;
-        }
-        header {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            color: #f59e0b;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2rem;
-            color: #cbd5e1;
-        }
-        .badge-location {
-            display: inline-block;
-            background: #ef4444;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #0f172a;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-        .service-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid #f59e0b;
-        }
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .portfolio-item {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .portfolio-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .portfolio-content {
-            padding: 20px;
-        }
-        .portfolio-content h3 {
-            margin-bottom: 8px;
-            color: #1e293b;
-        }
-        .contact-box {
-            background: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 8px;
-            margin-top: 50px;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .contact-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            color: white;
-        }
-        .btn-phone { background-color: #f59e0b; color: #0f172a; }
-        .btn-whatsapp { background-color: #25d366; }
-        .btn-email { background-color: #3b82f6; }
+<!DOCTYPE html> 
+<html lang="tr"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>GKC Elektrik ve İnşaat | Ankara</title> 
+<meta name="description" content="GKC Elektrik ve İnşaat - Ankara genelinde elektrik, aydınlatma, montaj, tadilat ve inşaat hizmetleri."> 
+<style> 
+:root{ 
+--navy:#073b70; 
+--navy-dark:#05294d; 
+--orange:#f7941d; 
+--orange-dark:#dc7610; 
+--white:#ffffff; 
+--light:#f5f8fc; 
+--text:#172033; 
+--muted:#667085; 
+} 
+*{ margin:0; padding:0; box-sizing:border-box; } 
+html{ scroll-behavior:smooth; } 
+body{ font-family:Arial,Helvetica,sans-serif; background:var(--light); color:var(--text); } 
+a{ text-decoration:none; } 
 
-        /* Gizli Admin Paneli Stilleri */
-        #adminModal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .admin-box {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .admin-box h3 {
-            margin-bottom: 15px;
-            color: #0f172a;
-        }
-        .admin-box label {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-        .admin-box input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .admin-box button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            background: #f59e0b;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .close-admin {
-            background: #ef4444 !important;
-            color: white;
-        }
-    </style>
-</head>
-<body>
+/* ========================= NAVBAR ========================= */ 
+.navbar{ position:sticky; top:0; z-index:999; background:rgba(5,41,77,.97); box-shadow:0 4px 20px rgba(0,0,0,.12); } 
+.nav-inner{ max-width:1200px; margin:auto; min-height:78px; padding:0 22px; display:flex; align-items:center; justify-content:space-between; } 
+.nav-brand{ display:flex; align-items:center; gap:12px; color:white; font-weight:900; font-size:18px; } 
+.nav-brand svg{ width:44px; height:44px; border-radius:10px; } 
+.nav-brand span{ color:var(--orange); } 
+.nav-menu{ display:flex; gap:28px; list-style:none; } 
+.nav-menu a{ color:white; font-size:14px; font-weight:bold; transition:.2s; } 
+.nav-menu a:hover{ color:var(--orange); } 
 
-    <header>
-        <h1>Gökçe Elektrik & İnşaat</h1>
-        <p>Ev ve İş Yeriniz İçin Güvenilir Usta Elinden Kaliteli Çözümler.</p>
-        <span class="badge-location">📍 Sadece Ankara İçi Hizmet</span>
-    </header>
+/* ========================= HERO ========================= */ 
+.hero{ min-height:720px; position:relative; display:flex; align-items:center; overflow:hidden; background: linear-gradient(120deg,rgba(5,41,77,.98),rgba(7,59,112,.90)); } 
+.hero::before{ content:""; position:absolute; width:650px; height:650px; border-radius:50%; background:rgba(247,148,29,.09); right:-220px; top:-180px; } 
+.hero::after{ content:""; position:absolute; width:350px; height:350px; border-radius:50%; border:2px solid rgba(247,148,29,.15); right:100px; bottom:-170px; } 
+.hero-inner{ max-width:1200px; width:100%; margin:auto; padding:70px 22px; display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center; position:relative; z-index:2; } 
+.hero-text{ color:white; } 
+.hero-label{ display:inline-block; padding:8px 15px; border-radius:30px; background:rgba(247,148,29,.15); border:1px solid rgba(247,148,29,.35); color:#ffb04d; font-size:13px; font-weight:bold; margin-bottom:22px; } 
+.hero h1{ font-size:clamp(42px,6vw,76px); line-height:1.02; letter-spacing:-3px; margin-bottom:22px; } 
+.hero h1 span{ color:var(--orange); } 
+.hero-text p{ max-width:650px; color:#d9e5f2; font-size:19px; line-height:1.7; } 
+.hero-buttons{ display:flex; flex-wrap:wrap; gap:13px; margin-top:32px; } 
+.hero-btn{ padding:15px 24px; border-radius:12px; font-weight:900; transition:.25s; } 
+.hero-btn:hover{ transform:translateY(-3px); } 
+.btn-orange{ background:var(--orange); color:#10253c; } 
+.btn-whatsapp{ background:#16a34a; color:white; } 
+.hero-location{ margin-top:25px; color:#cbd8e7; font-size:14px; } 
 
-    <div class="container">
-        
-        <h2 class="section-title">Hizmetlerim</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Elektrik Arıza & Montaj</h3>
-                <p>Ankara genelinde priz, anahtar değişimi, avize montajı ve sigorta arızaları çözümü.</p>
-            </div>
-            <div class="service-card">
-                <h3>Küçük Çaplı İnşaat & Tadilat</h3>
-                <p>Alçı tamiratı, boya rötuşları, duvar delme ve aksesuar montaj işleri.</p>
-            </div>
-            <div class="service-card">
-                <h3>Bakım & Onarım</h3>
-                <p>Evdeki teknik arızaların yerinde tespiti ve hızlı ustalık çözümleri.</p>
-            </div>
-        </div>
+/* LOGO BOX */ 
+.hero-logo{ display:flex; justify-content:center; align-items:center; } 
+.logo-box{ width:min(430px,80vw); aspect-ratio:1; border-radius:35px; background:white; padding:35px; box-shadow: 0 30px 80px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; } 
+.logo-box svg{ width:100%; height:100%; } 
 
-        <h2 class="section-title">Tamamlanan İşler (Portföy)</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTINTTYcKCD4cNAcvq-pgR3QpDNZKh2JEvp-kKwuoPQoa2uf8wvetUs25JHpTDqlJJB1ltdx0LaVx5WZ0s9xWpzaftzMqemGhmV" alt="Elektrik Montajı">
-                <div class="portfolio-content">
-                    <h3>Aydınlatma & LED Montajı</h3>
-                    <p>Tavan aydınlatma armatürleri ve spot kablolama işi titizlikle tamamlandı.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSY3VTSpsaWMutD02pgOSJlVgiFdJw2_BY2hBZgYGKgWXP7Ru0LzbNGZhvQdCpVb9e6PBxwln9bx36Sh6aZGfQckuBZTnDTbpEb" alt="İç Mekan Tadilatı">
-                <div class="portfolio-content">
-                    <h3>İç Mekan Yenileme</h3>
-                    <p>Elektrik altyapısı yenilenip duvar tamiratları yapılan konut projesi.</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR9F6fPFWvvm6TV6gVKFxwt3WZjMYOCMzd4wQ0bER8vyWWh8flbUrIlAypfZLVcwo7agekhkNpXwtAOq7DhO6zZqW2ChwvavcsS" alt="Teknik Ekipman ve Bakım">
-                <div class="portfolio-content">
-                    <h3>Kapsamlı Arıza Tespiti</h3>
-                    <p>Profesyonel ekipmanlar ile nokta atışı elektrik arıza onarımı.</p>
-                </div>
-            </div>
-        </div>
+/* ========================= QUICK SERVICES ========================= */ 
+.quick{ max-width:1050px; margin:-55px auto 0; position:relative; z-index:10; background:white; border-radius:20px; box-shadow:0 15px 45px rgba(7,59,112,.12); display:grid; grid-template-columns:repeat(3,1fr); overflow:hidden; } 
+.quick-item{ padding:27px 20px; text-align:center; border-right:1px solid #e5eaf0; } 
+.quick-item:last-child{ border-right:0; } 
+.quick-icon{ font-size:30px; margin-bottom:8px; } 
+.quick-item strong{ display:block; color:var(--navy); } 
+.quick-item span{ font-size:13px; color:var(--muted); } 
 
-        <div class="contact-box">
-            <h2>İletişime Geçin (Ankara)</h2>
-            <p>Ankara içi tüm elektrik ve küçük tadilat işleriniz için hemen ulaşabilirsiniz.</p>
-            
-            <div class="btn-group">
-                <a href="tel:05000000000" id="phoneLink" class="contact-btn btn-phone">📞 Ara: <span id="phoneText">0500 000 00 00</span></a>
-                <a href="https://wa.me/905000000000" id="waLink" target="_blank" class="contact-btn btn-whatsapp">💬 WhatsApp İle Yaz</a>
-                <a href="mailto:gokce@example.com" id="mailLink" class="contact-btn btn-email">✉️ E-posta Gönder</a>
-            </div>
-        </div>
+/* ========================= GENERAL ========================= */ 
+.container{ max-width:1200px; margin:auto; padding:85px 22px; } 
+.section-head{ max-width:720px; margin:0 auto 50px; text-align:center; } 
+.section-head .mini{ color:var(--orange-dark); font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:2px; } 
+.section-head h2{ color:var(--navy-dark); font-size:clamp(30px,5vw,46px); margin:8px 0 12px; } 
+.section-head p{ color:var(--muted); } 
 
-    </div>
+/* ========================= ABOUT ========================= */ 
+.about{ background:white; } 
+.about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; } 
+.about-image{ min-height:440px; border-radius:25px; overflow:hidden; background: linear-gradient(rgba(5,41,77,.12),rgba(5,41,77,.12)), url("https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1000&q=85"); background-size:cover; background-position:center; } 
+.about-content h2{ color:var(--navy-dark); font-size:40px; margin-bottom:20px; } 
+.about-content h2 span{ color:var(--orange); } 
+.about-content p{ color:var(--muted); margin-bottom:16px; } 
+.check-list{ list-style:none; margin-top:25px; } 
+.check-list li{ margin:13px 0; font-weight:bold; } 
+.check{ display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:50%; background:#fff0dc; color:var(--orange-dark); margin-right:8px; } 
 
-    <!-- Gizli Admin Paneli Modal -->
-    <div id="adminModal">
-        <div class="admin-box">
-            <h3>Yönetim Paneli (İletişim Düzenle)</h3>
-            
-            <label>Telefon Numarası:</label>
-            <input type="text" id="adminPhone" placeholder="Örn: 05321234567">
-            
-            <label>WhatsApp Numarası (Ülke Koduyla):</label>
-            <input type="text" id="adminWA" placeholder="Örn: 905321234567">
-            
-            <label>Gmail / E-posta Adresi:</label>
-            <input type="email" id="adminMail" placeholder="Örn: gokce@gmail.com">
-            
-            <button onclick="saveContactInfo()">Kaydet ve Güncelle</button>
-            <button class="close-admin" onclick="closeAdmin()">Kapat</button>
-        </div>
-    </div>
+/* ========================= SERVICES ========================= */ 
+.services{ background:var(--light); } 
+.services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; } 
+.service{ background:white; padding:30px; border-radius:20px; border:1px solid #e5ebf2; transition:.25s; } 
+.service:hover{ transform:translateY(-7px); border-color:#f4c27e; box-shadow:0 15px 35px rgba(7,59,112,.09); } 
+.service-icon{ width:58px; height:58px; display:flex; align-items:center; justify-content:center; border-radius:16px; background:#fff2df; font-size:28px; margin-bottom:18px; } 
+.service h3{ color:var(--navy); margin-bottom:9px; } 
+.service p{ color:var(--muted); font-size:14px; } 
 
-    <script>
-        // Sayfa yüklendiğinde kayıtlı bilgileri doldur
-        window.onload = function() {
-            const savedPhone = localStorage.getItem('gokce_phone');
-            const savedWA = localStorage.getItem('gokce_wa');
-            const savedMail = localStorage.getItem('gokce_mail');
+/* ========================= WHY ========================= */ 
+.why{ background:var(--navy-dark); color:white; } 
+.why .section-head h2{ color:white; } 
+.why .section-head p{ color:#c7d5e5; } 
+.why-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; } 
+.why-card{ padding:30px 20px; text-align:center; border:1px solid rgba(255,255,255,.1); border-radius:18px; background:rgba(255,255,255,.04); } 
+.why-icon{ font-size:35px; margin-bottom:13px; } 
+.why-card h3{ margin-bottom:8px; } 
+.why-card p{ color:#c7d5e5; font-size:13px; } 
 
-            if(savedPhone) {
-                document.getElementById('phoneText').innerText = savedPhone;
-                document.getElementById('phoneLink').href = "tel:" + savedPhone;
-                document.getElementById('adminPhone').value = savedPhone;
-            }
-            if(savedWA) {
-                document.getElementById('waLink').href = "https://wa.me/" + savedWA;
-                document.getElementById('adminWA').value = savedWA;
-            }
-            if(savedMail) {
-                document.getElementById('mailLink').href = "mailto:" + savedMail;
-                document.getElementById('adminMail').value = savedMail;
-            }
-        };
+/* ========================= PORTFOLIO ========================= */ 
+.portfolio{ background:white; } 
+.portfolio-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:25px; } 
+.portfolio-card{ overflow:hidden; border-radius:20px; background:white; box-shadow:0 8px 30px rgba(0,0,0,.08); border:1px solid #e6ebf0; } 
+.portfolio-card img{ width:100%; height:280px; display:block; object-fit:cover; } 
+.portfolio-content{ padding:22px; } 
+.portfolio-content h3{ color:var(--navy); margin-bottom:7px; } 
+.portfolio-content p{ color:var(--muted); } 
 
-        // GİZLİ TUŞ KOMBİNASYONU: Ctrl + Shift + A
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
-                e.preventDefault();
-                document.getElementById('adminModal').style.display = 'flex';
-            }
-        });
+/* ========================= CONTACT ========================= */ 
+.contact{ background:var(--light); } 
+.contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:25px; } 
+.contact-card{ background:white; padding:35px; border-radius:20px; border:1px solid #e4eaf0; } 
+.contact-card h3{ color:var(--navy); font-size:24px; margin-bottom:20px; } 
+.contact-row{ display:flex; gap:15px; align-items:center; margin:18px 0; } 
+.contact-icon{ width:48px; height:48px; border-radius:13px; background:#fff1dd; display:flex; align-items:center; justify-content:center; font-size:21px; } 
+.contact-row small{ color:#8a95a5; } 
+.contact-row a{ color:var(--navy); font-weight:900; } 
+.map-box{ min-height:300px; border-radius:20px; background: linear-gradient(rgba(5,41,77,.85),rgba(5,41,77,.85)), url("https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=1000&q=85"); background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; text-align:center; color:white; } 
+.map-box h3{ color:var(--orange); font-size:36px; margin-bottom:10px; } 
 
-        function closeAdmin() {
-            document.getElementById('adminModal').style.display = 'none';
-        }
+/* ========================= FOOTER ========================= */ 
+footer{ background:#031d36; color:#aebfd1; text-align:center; padding:35px 20px; } 
+footer strong{ color:white; } 
+footer span{ color:var(--orange); } 
 
-        function saveContactInfo() {
-            const phone = document.getElementById('adminPhone').value;
-            const wa = document.getElementById('adminWA').value;
-            const mail = document.getElementById('adminMail').value;
+/* ========================= FLOATING ========================= */ 
+.floating{ position:fixed; right:18px; bottom:18px; z-index:500; display:flex; flex-direction:column; gap:10px; } 
+.float{ width:57px; height:57px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; box-shadow:0 8px 25px rgba(0,0,0,.25); } 
+.float-phone{ background:var(--orange); } 
+.float-wa{ background:#16a34a; } 
 
-            if(phone) localStorage.setItem('gokce_phone', phone);
-            if(wa) localStorage.setItem('gokce_wa', wa);
-            if(mail) localStorage.setItem('gokce_mail', mail);
+/* ========================= MOBILE ========================= */ 
+@media(max-width:850px){ 
+.nav-menu{ display:none; } 
+.hero-inner{ grid-template-columns:1fr; text-align:center; } 
+.hero-text p{ margin:auto; } 
+.hero-buttons{ justify-content:center; } 
+.hero-logo{ order:-1; } 
+.logo-box{ width:270px; padding:22px; } 
+.about-grid{ grid-template-columns:1fr; } 
+.services-grid{ grid-template-columns:repeat(2,1fr); } 
+.why-grid{ grid-template-columns:repeat(2,1fr); } 
+.contact-grid{ grid-template-columns:1fr; } 
+} 
+@media(max-width:600px){ 
+.hero{ min-height:700px; } 
+.hero h1{ font-size:43px; letter-spacing:-1.5px; } 
+.hero-text p{ font-size:16px; } 
+.logo-box{ width:220px; } 
+.quick{ margin:-35px 15px 0; grid-template-columns:1fr; } 
+.quick-item{ border-right:0; border-bottom:1px solid #e5eaf0; } 
+.quick-item:last-child{ border-bottom:0; } 
+.services-grid, .why-grid, .portfolio-grid{ grid-template-columns:1fr; } 
+.container{ padding:60px 17px; } 
+.about-image{ min-height:280px; } 
+.portfolio-card img{ height:220px; } 
+.hero-btn{ width:100%; } 
+.hero-buttons{ width:100%; } 
+} 
+</style> 
+</head> 
+<body> 
+<!-- NAVBAR --> 
+<nav class="navbar"> 
+<div class="nav-inner"> 
+<a href="#" class="nav-brand"> 
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<rect width="200" height="200" rx="40" fill="#05294d"/>
+<path d="M40 140 L100 50 L160 140" stroke="#f7941d" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="105,75 80,115 100,115 90,150 120,105 100,105" fill="#f7941d"/>
+</svg>
+<div> GKC <span>ELEKTRİK & İNŞAAT</span> </div> 
+</a> 
+<ul class="nav-menu"> 
+<li><a href="#hakkimizda">Hakkımızda</a></li> 
+<li><a href="#hizmetler">Hizmetler</a></li> 
+<li><a href="#calismalar">Çalışmalar</a></li> 
+<li><a href="#iletisim">İletişim</a></li> 
+</ul> 
+</div> 
+</nav> 
 
-            alert('İletişim bilgileri başarıyla güncellendi!');
-            location.reload();
-        }
-    </script>
+<!-- HERO --> 
+<header class="hero"> 
+<div class="hero-inner"> 
+<div class="hero-text"> 
+<div class="hero-label"> ⚡ ANKARA GENELİ HİZMET </div> 
+<h1> GKC <span>Elektrik</span> ve İnşaat </h1> 
+<p> Elektrik, aydınlatma, montaj, tadilat ve inşaat işlerinizde güvenilir çözümler. </p> 
+<div class="hero-buttons"> 
+<a href="tel:05102214893" class="hero-btn btn-orange"> 📞 Hemen Ara </a> 
+<a href="https://wa.me/905102214893" target="_blank" class="hero-btn btn-whatsapp"> 💬 WhatsApp </a> 
+</div> 
+<div class="hero-location"> 📍 Ankara ve çevresinde hizmet </div> 
+</div> 
+<div class="hero-logo"> 
+<div class="logo-box"> 
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" rx="60" fill="#05294d"/>
+<path d="M80 290 L200 100 L320 290" stroke="#f7941d" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="210,140 160,220 200,220 180,290 240,200 200,200" fill="#f7941d"/>
+<text x="200" y="340" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="4">GKC</text>
+</svg>
+</div> 
+</div> 
+</div> 
+</header> 
 
-</body>
+<!-- QUICK --> 
+<div class="quick"> 
+<div class="quick-item"> 
+<div class="quick-icon">⚡</div> 
+<strong>Elektrik</strong> <span> Arıza & Tesisat </span> 
+</div> 
+<div class="quick-item"> 
+<div class="quick-icon">🔧</div> 
+<strong>Montaj</strong> <span> Ev & İş Yeri </span> 
+</div> 
+<div class="quick-item"> 
+<div class="quick-icon">🏗️</div> 
+<strong>İnşaat</strong> <span> Tadilat & Tamirat </span> 
+</div> 
+</div> 
+
+<!-- ABOUT --> 
+<section class="about" id="hakkimizda"> 
+<div class="container"> 
+<div class="about-grid"> 
+<div class="about-image"></div> 
+<div class="about-content"> 
+<div class="section-head" style="text-align:left;margin:0 0 20px"> 
+<div class="mini"> GKC HAKKINDA </div> 
+</div> 
+<h2> İşinizi <span>ustasına</span> bırakın. </h2> 
+<p> GKC Elektrik ve İnşaat olarak elektrik, aydınlatma, montaj, tadilat ve çeşitli ev içi uygulamalarda hizmet sunuyoruz. </p> 
+<p> Amacımız işi düzgün planlamak, temiz çalışmak ve müşterilerimize güvenilir çözümler sunmaktır. </p> 
+<ul class="check-list"> 
+<li> <span class="check">✓</span> Özenli ve temiz işçilik </li> 
+<li> <span class="check">✓</span> Açık iletişim </li> 
+<li> <span class="check">✓</span> Ankara genelinde hizmet </li> 
+<li> <span class="check">✓</span> Elektrik ve inşaat çözümleri </li> 
+</ul> 
+</div> 
+</div> 
+</div> 
+</section> 
+
+<!-- SERVICES --> 
+<section class="services" id="hizmetler"> 
+<div class="container"> 
+<div class="section-head"> 
+<div class="mini"> HİZMETLER </div> 
+<h2> Ne Yapıyoruz? </h2> 
+<p> Ev ve iş yerleriniz için elektrikten montaja kadar çeşitli hizmetler. </p> 
+</div> 
+<div class="services-grid"> 
+<div class="service"> 
+<div class="service-icon">⚡</div> 
+<h3> Elektrik Arızaları </h3> 
+<p> Priz, anahtar, sigorta ve çeşitli ev içi elektrik sorunları. </p> 
+</div> 
+<div class="service"> 
+<div class="service-icon">💡</div> 
+<h3> Avize & Aydınlatma </h3> 
+<p> Avize, aplik, LED ve çeşitli aydınlatma montajları. </p> 
+</div> 
+<div class="service"> 
+<div class="service-icon">🔧</div> 
+<h3> Montaj İşleri </h3> 
+<p> Raf, korniş, TV askısı ve çeşitli ev montajları. </p> 
+</div> 
+<div class="service"> 
+<div class="service-icon">🏠</div> 
+<h3> Tadilat & Tamirat </h3> 
+<p> Küçük çaplı duvar, alçı ve ev içi tamirat işleri. </p> 
+</div> 
+<div class="service"> 
+<div class="service-icon">🎨</div> 
+<h3> Boya & Rötuş </h3> 
+<p> Küçük alanlarda boya ve yüzey düzeltme işlemleri. </p> 
+</div> 
+<div class="service"> 
+<div class="service-icon">🏗️</div> 
+<h3> İnşaat İşleri </h3> 
+<p> İhtiyaca uygun çeşitli inşaat ve uygulama işleri. </p> 
+</div> 
+</div> 
+</div> 
+</section> 
+
+<!-- WHY --> 
+<section class="why"> 
+<div class="container"> 
+<div class="section-head"> 
+<div class="mini" style="color:#f7941d"> NEDEN GKC? </div> 
+<h2> Güvenilir İşçilik </h2> 
+<p> İşinizi özenle ele alıyoruz. </p> 
+</div> 
+<div class="why-grid"> 
+<div class="why-card"> 
+<div class="why-icon">🤝</div> 
+<h3> Güven </h3> 
+<p> Açık ve anlaşılır iletişim. </p> 
+</div> 
+<div class="why-card"> 
+<div class="why-icon">🧹</div> 
+<h3> Temizlik </h3> 
+<p> Çalışma alanına özen. </p> 
+</div> 
+<div class="why-card"> 
+<div class="why-icon">⚡</div> 
+<h3> Çözüm </h3> 
+<p> İhtiyaca uygun uygulama. </p> 
+</div> 
+<div class="why-card"> 
+<div class="why-icon">📍</div> 
+<h3> Ankara </h3> 
+<p> Ankara genelinde hizmet. </p> 
+</div> 
+</div> 
+</div> 
+</section> 
+
+<!-- PORTFOLIO --> 
+<section class="portfolio" id="calismalar"> 
+<div class="container"> 
+<div class="section-head"> 
+<div class="mini"> ÇALIŞMALAR </div> 
+<h2> Yaptığımız İşler </h2> 
+<p> Gerçek çalışmalarınızı buraya ekleyebilirsiniz. </p> 
+</div> 
+<div class="portfolio-grid"> 
+<div class="portfolio-card"> 
+<img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?auto=format&fit=crop&w=1000&q=85" alt="Aydınlatma"> 
+<div class="portfolio-content"> 
+<h3> Aydınlatma Montajı </h3> 
+<p> Avize ve aydınlatma uygulamaları. </p> 
+</div> 
+</div> 
+<div class="portfolio-card"> 
+<img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=1000&q=85" alt="Elektrik"> 
+<div class="portfolio-content"> 
+<h3> Elektrik Çalışmaları </h3> 
+<p> Elektrik ve tesisat uygulamaları. </p> 
+</div> 
+</div> 
+<div class="portfolio-card"> 
+<img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=85" alt="Montaj"> 
+<div class="portfolio-content"> 
+<h3> Montaj İşleri </h3> 
+<p> Ev içi montaj ve kurulumlar. </p> 
+</div> 
+</div> 
+<div class="portfolio-card"> 
+<img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1000&q=85" alt="Tadilat"> 
+<div class="portfolio-content"> 
+<h3> Tadilat & Boya </h3> 
+<p> Tadilat ve yüzey uygulamaları. </p> 
+</div> 
+</div> 
+</div> 
+</div> 
+</section> 
+
+<!-- CONTACT --> 
+<section class="contact" id="iletisim"> 
+<div class="container"> 
+<div class="section-head"> 
+<div class="mini"> İLETİŞİM </div> 
+<h2> Bize Ulaşın </h2> 
+<p> İşiniz hakkında bilgi almak için hemen iletişime geçebilirsiniz. </p> 
+</div> 
+<div class="contact-grid"> 
+<div class="contact-card"> 
+<h3> GKC Elektrik ve İnşaat </h3> 
+<div class="contact-row"> 
+<div class="contact-icon"> 📞 </div> 
+<div> 
+<small> Telefon </small> 
+<br> 
+<a href="tel:05102214893"> 0510 221 48 93 </a> 
+</div> 
+</div> 
+<div class="contact-row"> 
+<div class="contact-icon"> 💬 </div> 
+<div> 
+<small> WhatsApp </small> 
+<br> 
+<a href="https://wa.me/905102214893" target="_blank"> WhatsApp'tan Yaz </a> 
+</div> 
+</div> 
+<div class="contact-row"> 
+<div class="contact-icon"> 📍 </div> 
+<div> 
+<small> Hizmet Bölgesi </small> 
+<br> 
+<strong> Ankara Geneli </strong> 
+</div> 
+</div> 
+</div> 
+<div class="map-box"> 
+<div> 
+<h3> 📍 ANKARA </h3> 
+<p> Ankara genelinde elektrik, montaj, tadilat ve inşaat hizmetleri. </p> 
+</div> 
+</div> 
+</div> 
+</div> 
+</section> 
+
+<!-- FOOTER --> 
+<footer> 
+<p> <strong> GKC <span>ELEKTRİK VE İNŞAAT</span> </strong> </p> 
+<p> © 2026 - Ankara </p> 
+</footer> 
+
+<!-- FLOATING BUTTONS --> 
+<div class="floating"> 
+<a href="https://wa.me/905102214893" target="_blank" class="float float-wa"> 💬 </a> 
+<a href="tel:05102214893" class="float float-phone"> 📞 </a> 
+</div> 
+</body> 
 </html>
+
